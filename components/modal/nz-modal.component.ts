@@ -547,9 +547,12 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R>
 
   private trapFocus(): void {
     if (!this.focusTrap) {
-      this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
+      // this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
+      // rtcenter 处理
+      // 没有获取元素焦点时, 不做处理, 防止弹框产生时就获得焦点
+      // console.log('没有获取元素焦点');
     }
-    this.focusTrap.focusInitialElementWhenReady();
+    // this.focusTrap.focusInitialElementWhenReady();
   }
 
   private restoreFocus(): void {

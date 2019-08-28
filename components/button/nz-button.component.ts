@@ -79,6 +79,7 @@ export class NzButtonComponent implements AfterContentInit, OnInit, OnDestroy, O
   @Input() nzType: NzButtonType = 'default';
   @Input() nzShape: NzButtonShape = null;
   @Input() nzSize: NzSizeLDSType = 'default';
+  @Input() @InputBoolean() needFocus: boolean = false;
 
   /** temp solution since no method add classMap to host https://github.com/angular/angular/issues/7289 */
   setClassMap(): void {
@@ -192,6 +193,17 @@ export class NzButtonComponent implements AfterContentInit, OnInit, OnDestroy, O
       this.nzWave.disable();
     } else {
       this.nzWave.enable();
+    }
+    if (changes.nzType && changes.nzType.currentValue === 'primary' ) {
+      // const style1 = "color: #fff background: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%); box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);";
+      if (this.needFocus) {
+        // 需要焦点的样式的变化时, 保持不变
+      } else {
+        // 不需要焦点的时候, 通过onmouseup事件来取消焦点; 如果使用时重写了onmouseup事件, 该方法失效.
+        this.elementRef.nativeElement.onmouseup = () => {
+          this.elementRef.nativeElement.onfocus = this.elementRef.nativeElement.blur();
+        };
+      }
     }
   }
 }
