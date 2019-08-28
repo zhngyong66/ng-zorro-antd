@@ -36,7 +36,10 @@
 }
 
 .@{form-prefix-cls}-item-label > label {
-  color: @label-color;
+  // color: @label-color;
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  color: @rt-font-base-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------  
 
   &::after {
     & when (@form-item-trailing-colon=true) {

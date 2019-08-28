@@ -55,7 +55,7 @@
   }
 
   &:hover &-input:not(.@{ant-prefix}-input-disabled) {
-    border-color: @input-hover-border-color;
+    border-color: @primary-color;
   }
 
   &:focus &-input:not(.@{ant-prefix}-input-disabled) {
@@ -75,6 +75,10 @@
     line-height: 14px;
     transition: all 0.3s;
     user-select: none;
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-calender-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-clear {
@@ -100,6 +104,10 @@
     color: @disabled-color;
     font-size: @font-size-base;
     line-height: 1;
+  
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-calender-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-small &-clear,

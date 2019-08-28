@@ -2,7 +2,9 @@
 @import '../../style/mixins/index';
 
 @slider-prefix-cls: ~'@{ant-prefix}-slider';
-
+@rt-bg-color: #4BAFD7;
+@rt-bg-color-2: rgba(51, 51, 51, 1);
+@rt-bg-color-3: rgba(78, 78, 78, 1);
 .@{slider-prefix-cls} {
   .reset-component;
 
@@ -24,8 +26,16 @@
     width: 100%;
     height: 4px;
     background-color: @slider-rail-background-color;
-    border-radius: @border-radius-sm;
+    border-radius: 2px;
     transition: background-color 0.3s;
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    height: 8px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-track {
@@ -33,7 +43,13 @@
     height: 4px;
     background-color: @slider-track-background-color;
     border-radius: @border-radius-base;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    height: 8px;
+    background: @rt-bg-color-3;
+    border-radius: 4px;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-handle {
@@ -42,10 +58,10 @@
     height: 14px;
     margin-top: -5px;
     margin-left: -7px;
-    background-color: @slider-handle-background-color;
-    border: solid @slider-handle-border-width @slider-handle-color;
+    background-color: @component-background;
+    border: solid 2px @slider-handle-color;
     border-radius: 50%;
-    box-shadow: @slider-handle-shadow;
+    box-shadow: 0;
     cursor: pointer;
     transition: border-color 0.3s, box-shadow 0.6s,
       transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
@@ -59,6 +75,21 @@
     &.@{ant-prefix}-tooltip-open {
       border-color: @slider-handle-color-tooltip-open;
     }
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    width: 10px;
+    height: 22px;
+    margin-top: -6px;
+    background: @rt-bg-color-3;
+    border:1px solid rgba(0, 0, 0, 0.3);
+    box-shadow:0px 3px 8px 0px rgba(0, 0, 0, 0.08);
+    border-radius:4px 4px 4px 4px;
+    &:focus {
+      border-color: @rt-bg-color-3;
+      outline: none;
+      box-shadow: 0 0 0 5px @slider-handle-color-focus-shadow;
+    }
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &:hover {
@@ -71,6 +102,20 @@
     .@{slider-prefix-cls}-handle:not(.@{ant-prefix}-tooltip-open) {
       border-color: @slider-handle-color-hover;
     }
+
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  .@{slider-prefix-cls}-rail {
+    background-color: rgba(255,255,255,0.1);
+  }
+  .@{slider-prefix-cls}-track {
+    background-color: @rt-bg-color-3;
+  }
+  .@{slider-prefix-cls}-handle:not(.@{ant-prefix}-tooltip-open) {
+    border-color: @rt-bg-color-3;
+  }
+
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-mark {
@@ -120,6 +165,17 @@
     &-active {
       border-color: @slider-dot-border-color-active;
     }
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    top: -1px;
+    width: 10px;
+    height: 10px;
+    margin-left: -8px;
+    background-color: @rt-bg-color;
+    &-active {
+      border-color: @rt-bg-color;
+    }
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-disabled {
@@ -187,5 +243,28 @@
       left: 2px;
       margin-bottom: -4px;
     }
+
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    .@{slider-prefix-cls}-rail {
+      width: 10px;
+      height: 100%;
+    }
+
+    .@{slider-prefix-cls}-track {
+      width: 10px;
+    }
+    .@{slider-prefix-cls}-handle {
+      width: 22px;
+      height: 10px;
+      margin-bottom: -8px;
+      margin-left: -7px;
+    }
+    .@{slider-prefix-cls}-dot {
+      left: 3px;
+      margin-left: -4px;
+      margin-bottom: -8px;
+    }
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 }

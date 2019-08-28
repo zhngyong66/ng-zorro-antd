@@ -31,7 +31,7 @@
       border-radius: @border-radius-sm;
       visibility: hidden;
       animation: antCheckboxEffect 0.36s ease-in-out;
-      animation-fill-mode: backwards;
+      animation-fill-mode: both;
       content: '';
     }
 
@@ -43,12 +43,18 @@
     &-inner {
       position: relative;
       top: 0;
-      left: 0;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+      left: 1px;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
+      // left: 0;
       display: block;
       width: @checkbox-size;
       height: @checkbox-size;
       background-color: @checkbox-check-color;
-      border: @checkbox-border-width @border-style-base @border-color-base;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+      // border: @checkbox-border-width @border-style-base @border-color-base;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
+      // border: @checkbox-border-width @border-style-base @border-color-base;
       border-radius: @border-radius-sm;
       // Fix IE checked style
       // https://github.com/ant-design/ant-design/issues/12597
@@ -87,13 +93,46 @@
       cursor: pointer;
       opacity: 0;
     }
-  }
 
+    @rt-bg-color: @rt-input-background;
+    @rt-checkbox-box-shadow: @rt-input-box-shadow;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background: @rt-bg-color;
+    border-color: @rt-radio-checked-border-color;
+    box-shadow: @rt-input-box-shadow;
+    border-radius: @rt-border-radius2;
+    .@{checkbox-prefix-cls}-wrapper{
+      background-color: @rt-bg-color;
+    }
+    .@{checkbox-prefix-cls}-wrapper:hover &-inner,
+    &:hover &-inner,
+    &-input:focus + &-inner {
+      border-color:  @rt-radio-checked-border-color;
+      box-shadow: @rt-checkbox-box-shadow;
+    }
+    &-checked::after {
+      border-color:  @rt-radio-checked-border-color;
+      box-shadow: @rt-checkbox-box-shadow;
+    }
+    &-inner {
+      background-color: @rt-bg-color;
+      // &::after {
+        // border: 2px solid rgba(0, 0, 0, 0.35);
+        // box-shadow:0px 1px 0px 0px rgba(255,255,255,0.25), 0px 0px 4px 0px rgba(255,255,255,0.15);
+      // }
+    }
+  // ----------------------------------------------- rtcenter end --------------------------------------------
+    
+  }
+  // @rt-checkbox-check-color: 2px solid #4BAFD7;
   // 选中状态
   .@{checkbox-prefix-cls}-checked .@{checkbox-inner-prefix-cls}::after {
     position: absolute;
     display: table;
-    border: 2px solid @checkbox-check-color;
+    // border: 2px solid @checkbox-check-color;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    border: @rt-checkbox-check-color;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
     border-top: 0;
     border-left: 0;
     transform: rotate(45deg) scale(1) translate(-50%, -50%);
@@ -134,7 +173,10 @@
     }
 
     & + span {
-      color: @disabled-color;
+      // color: @disabled-color;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+      color: @rt-font-base-color;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
       cursor: not-allowed;
     }
   }
@@ -148,8 +190,13 @@
     & + & {
       margin-left: 8px;
     }
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-font-base-color;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
+  .@{checkbox-prefix-cls}-wrapper + span,
   .@{checkbox-prefix-cls} + span {
     padding-right: 8px;
     padding-left: 8px;
@@ -170,6 +217,25 @@
       margin-left: 0;
     }
   }
+
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  .@{checkbox-prefix-cls}-checked .@{checkbox-inner-prefix-cls} {
+    // border: 2px solid #4BAFD7;
+    border-color: @rt-radio-checked-border-color;
+  }
+  .@{checkbox-prefix-cls}-checked {
+    .@{checkbox-inner-prefix-cls} {
+      background-color: @rt-radio-inner-background-color;
+      // border-color:rgba(0, 0, 0, 0.35);
+    }
+  }
+  .@{checkbox-prefix-cls}-disabled {
+    .@{checkbox-inner-prefix-cls} {
+      background-color: @rt-input-disable-background;
+    }
+  }
+// ----------------------------------------------- rtcenter end --------------------------------------------
+
 
   // 半选状态
   .@{checkbox-prefix-cls}-indeterminate {

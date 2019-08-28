@@ -8,16 +8,65 @@
 @html-selector: html;
 
 // -------- Colors -----------
-@primary-color: @blue-6;
-@info-color: @blue-6;
+@primary-color: @black-6;
+@info-color: @black-6;
 @success-color: @green-6;
-@processing-color: @blue-6;
+@processing-color: @black-6;
 @error-color: @red-6;
 @highlight-color: @red-6;
 @warning-color: @gold-6;
 @normal-color: #d9d9d9;
 @white: #fff;
 @black: #000;
+
+
+// ----------------------------------------------- rtcenter start --------------------------------------------
+@rt-border: 1px solid rgba(0, 0, 0, 0.5);
+@rt-border-radius: 4px;
+@rt-border-radius2: 2px;
+@rt-background-color: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%);
+@rt-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);
+@rt-hover-border: 1px solid rgba(0, 0, 0, 0.5);
+@rt-hover-background-color: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%);
+@rt-hover-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);
+@rt-font-theme-color: #4BAFD7;
+@rt-font-base-color: #fff;
+@rt-active-border: 1px solid rgba(0, 0, 0, 0.2);
+@rt-active-background-color: rgb(51, 51, 51);
+@rt-active-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.12), 0px 0px 4px rgba(255, 255, 255, 0.2);
+
+@rt-input-background: rgba(51,51,51,1);
+@rt-input-border: 1px solid rgba(0, 0, 0, 0.35);
+@rt-input-box-shadow: 0px 1px 0px 0px rgba(255,255,255,0.25), 0px 0px 4px 0px rgba(255,255,255,0.15);
+@rt-input-disable-background: rgba(77,77,77,1); // #4d4d4d
+
+@rt-svg-fill-color: #fff;
+
+@rt-input-number-border: 1px solid rgba(0, 0, 0, 0.35);
+@rt-input-number-handler-bg-color: #343434;
+@rt-input-number-handler-warp-border-left: 1px solid rgb(71, 71, 71);
+
+@rt-radio-border: 1px solid rgba(51,51,51,1);
+@rt-radio-box-shadow: 0px 1px 0px 0px rgba(255,255,255,0.25), 0px 0px 4px 0px rgba(255,255,255,0.15);
+@rt-radio-inner-background-color: rgba(51,51,51,1);
+@rt-radio-inner-affter-bg-color: @rt-font-theme-color;
+@rt-radio-checked-border-color: rgba(0, 0, 0, 0.35);
+@rt-radio-inner-disabled-bg-color: #5e8da0;
+@rt-radio-disabled-span-color: rgba(255, 255, 255, 0.6);
+
+@rt-checkbox-check-color: 2px solid #4BAFD7;
+
+@rt-calender-color: #cfcfcf;
+@rt-calender-bg-color: #535353;
+
+@rt-table-tr-th-bg-color: rgba(61, 61, 61, 1); //#3d3d3d
+@rt-table-tr-th-border-bottom: 1px solid #343434; // rgba(52,52,52,1)
+@rt-table-tr-th-box-shadow: inset 0 0 2px 1px #515151; //rgb(81,81,81)
+@rt-table-tr-td-bg-color: #343434; // rgba(52,52,52,1)
+@rt-table-tr-td-border: 1px solid #4d4d4d; // rgba(77,77,77,1);
+@rt-table-placeholder-border-color: #525252; 
+
+// ----------------------------------------------- rtcenter end --------------------------------------------
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
@@ -156,9 +205,9 @@
 @btn-default-bg: @component-background;
 @btn-default-border: @border-color-base;
 
-@btn-danger-color: #fff;
-@btn-danger-bg: color(~`colorPalette('@{error-color}', 5) `);
-@btn-danger-border: color(~`colorPalette('@{error-color}', 5) `);
+@btn-danger-color: @error-color;
+@btn-danger-bg: @background-color-base;
+@btn-danger-border: @border-color-base;
 
 @btn-disable-color: @disabled-color;
 @btn-disable-bg: @disabled-bg;
@@ -316,7 +365,7 @@
 @input-bg: @component-background;
 @input-number-handler-active-bg: #f4f4f4;
 @input-addon-bg: @background-color-light;
-@input-hover-border-color: @primary-5;
+@input-hover-border-color: @primary-color;
 @input-disabled-bg: @disabled-bg;
 @input-outline-offset: 0 0;
 
@@ -363,14 +412,13 @@
 @modal-body-padding: 24px;
 @modal-header-bg: @component-background;
 @modal-footer-bg: transparent;
-@modal-mask-bg: fade(@black, 45%);
+@modal-mask-bg: fade(@black, 65%);
 
 // Progress
 // --
 @progress-default-color: @processing-color;
 @progress-remaining-color: @background-color-base;
 @progress-text-color: @text-color;
-@progress-radius: 100px;
 
 // Menu
 // ---
@@ -384,17 +432,6 @@
 @menu-item-active-bg: @item-active-bg;
 @menu-item-active-border-width: 3px;
 @menu-item-group-title-color: @text-color-secondary;
-@menu-icon-size: @font-size-base;
-@menu-icon-size-lg: @font-size-lg;
-
-@menu-item-vertical-margin: 4px;
-@menu-item-font-size: @font-size-base;
-@menu-item-boundary-margin: 8px;
-@menu-icon-size: @font-size-base;
-@menu-icon-size-lg: @font-size-lg;
-@menu-dark-selected-item-icon-color: @white;
-@menu-dark-selected-item-text-color: @white;
-@dark-menu-item-hover-bg: transparent;
 
 // dark theme
 @menu-dark-color: @text-color-secondary-dark;
@@ -403,9 +440,7 @@
 @menu-dark-submenu-bg: #000c17;
 @menu-dark-highlight-color: #fff;
 @menu-dark-item-active-bg: @primary-color;
-@menu-dark-selected-item-icon-color: @white;
-@menu-dark-selected-item-text-color: @white;
-@menu-dark-item-hover-bg: transparent;
+
 // Spin
 // ---
 @spin-dot-size-sm: 14px;
@@ -427,8 +462,6 @@
 @table-padding-vertical: 16px;
 @table-padding-horizontal: 16px;
 @table-border-radius-base: @border-radius-base;
-@table-footer-bg: @background-color-light;
-@table-footer-color: @heading-color;
 
 // Tag
 // --
@@ -505,8 +538,6 @@
 @tabs-highlight-color: @primary-color;
 @tabs-hover-color: @primary-5;
 @tabs-active-color: @primary-7;
-@tabs-card-gutter: 2px;
-@tabs-card-tab-active-border-top: 2px solid transparent;
 
 // BackTop
 // ---
@@ -566,14 +597,11 @@
 @slider-rail-background-color-hover: #e1e1e1;
 @slider-track-background-color: @primary-3;
 @slider-track-background-color-hover: @primary-4;
-@slider-handle-border-width: 2px;
-@slider-handle-background-color: @component-background;
 @slider-handle-color: @primary-3;
 @slider-handle-color-hover: @primary-4;
 @slider-handle-color-focus: tint(@primary-color, 20%);
 @slider-handle-color-focus-shadow: fade(@primary-color, 20%);
 @slider-handle-color-tooltip-open: @primary-color;
-@slider-handle-shadow: 0;
 @slider-dot-border-color: @border-color-split;
 @slider-dot-border-color-active: tint(@primary-color, 50%);
 @slider-disabled-color: @disabled-color;
@@ -642,17 +670,9 @@
 @statistic-title-font-size: @font-size-base;
 @statistic-content-font-size: 24px;
 @statistic-unit-font-size: 16px;
-@statistic-font-family: @font-family;
+@statistic-font-family: Tahoma, 'Helvetica Neue', @font-family;
 
 // Drawer
 // ---
 @drawer-header-padding: 16px 24px;
 @drawer-body-padding: 24px;
-
-// Timeline
-// ---
-@timeline-width: 2px;
-@timeline-color: @border-color-split;
-@timeline-dot-border-width: 2px;
-@timeline-dot-color: @primary-color;
-@timeline-dot-bg: @component-background;

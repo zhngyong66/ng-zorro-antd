@@ -12,8 +12,8 @@
     border: 0 solid #aaa;
     border-width: 1.5px 0 0 1.5px;
     border-radius: 1px;
-    transform: rotate(-45deg) scale(0.8);
-    transition: all 0.3s;
+    transform: rotate(-45deg) scale(.8);
+    transition: all .3s;
     content: '';
   }
 
@@ -42,7 +42,7 @@
 
   &::before,
   &::after {
-    transform: rotate(135deg) scale(0.8);
+    transform: rotate(135deg) scale(.8);
   }
 }
 
@@ -79,6 +79,10 @@
     color: @heading-color;
     font-weight: 500;
     line-height: 40px;
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-calender-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   .@{calendar-prefix-cls}-century-select-arrow,
@@ -131,18 +135,6 @@
   }
 }
 
-.calendar-selected-cell() {
-  .@{calendar-prefix-cls}-date {
-    color: @text-color-inverse;
-    background: @primary-color;
-    border: @border-width-base @border-style-base transparent;
-
-    &:hover {
-      background: @primary-color;
-    }
-  }
-}
-
 .@{calendar-prefix-cls} {
   position: relative;
   width: 280px;
@@ -156,6 +148,13 @@
   border-radius: @border-radius-base;
   outline: none;
   box-shadow: @box-shadow-base;
+
+  
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  background-color: @rt-calender-bg-color;
+  border: 1px solid @rt-calender-bg-color;
+  color: @rt-calender-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
 
   &-input-wrap {
     height: 34px;
@@ -172,6 +171,11 @@
     outline: 0;
     cursor: auto;
     .placeholder;
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-calender-color;
+    background-color: @rt-calender-bg-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-week-number {
@@ -259,6 +263,10 @@
       color: @text-color-inverse;
       background: @primary-5;
     }
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-calender-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-today &-date {
@@ -267,21 +275,26 @@
     border-color: @primary-color;
   }
 
-  &-selected-day &-date {
-    background: @primary-2;
-  }
-
-  &-selected-date {
-    .calendar-selected-cell;
-  }
-
   &-last-month-cell &-date,
   &-next-month-btn-day &-date {
-    &,
-    &:hover {
-      color: @disabled-color;
-      background: transparent;
-      border-color: transparent;
+    color: @disabled-color;
+  }
+
+  &-selected-day &-date {
+    background: tint(@primary-color, 80%);
+  }
+
+  &-selected-date,
+  &-selected-start-date,
+  &-selected-end-date {
+    .@{calendar-prefix-cls}-date {
+      color: @text-color-inverse;
+      background: @primary-color;
+      border: @border-width-base @border-style-base transparent;
+
+      &:hover {
+        background: @primary-color;
+      }
     }
   }
 

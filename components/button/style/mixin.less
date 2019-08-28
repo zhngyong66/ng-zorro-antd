@@ -21,6 +21,11 @@
       text-shadow: none;
       box-shadow: none;
     }
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    color: rgba(255, 255, 255, 0.6) !important;
+    border-color: rgb(61, 61, 61) !important;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 }
 
@@ -62,6 +67,26 @@
     .button-color(
       ~`colorPalette('@{btn-primary-bg}', 7) `; @background; ~`colorPalette('@{btn-primary-bg}', 7)
         `
+    );
+  }
+  .button-disabled();
+}
+.button-variant-danger(@color; @background; @border) {
+  .button-color(@color; @background; @border);
+  &:hover {
+    .button-color(
+      @btn-primary-color; ~`colorPalette('@{color}', 5) `; ~`colorPalette('@{color}', 5) `
+    );
+  }
+  &:focus {
+    .button-color(
+      ~`colorPalette('@{color}', 5) `; @component-background; ~`colorPalette('@{color}', 5) `
+    );
+  }
+  &:active,
+  &.active {
+    .button-color(
+      @btn-primary-color; ~`colorPalette('@{color}', 7) `; ~`colorPalette('@{color}', 7) `
     );
   }
   .button-disabled();
@@ -210,7 +235,7 @@
 }
 // danger button style
 .btn-danger() {
-  .button-variant-primary(@btn-danger-color, @btn-danger-bg);
+  .button-variant-danger(@btn-danger-color, @btn-danger-bg, @btn-danger-border);
 }
 // link button style
 .btn-link() {

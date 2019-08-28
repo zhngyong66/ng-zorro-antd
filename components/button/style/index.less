@@ -8,11 +8,25 @@
 @btn-ghost-color: @text-color;
 @btn-ghost-bg: transparent;
 @btn-ghost-border: @border-color-base;
-
+// @rt-border: 1px solid rgba(0, 0, 0, 0.5);
+// @rt-border-radius: 4px;
+// @rt-background-color: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%);
+// @rt-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);
+// @rt-hover-border: 1px solid rgba(0, 0, 0, 0.5);
+// @rt-hover-background-color: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%);
+// @rt-hover-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);
+// @rt-font-theme-color: #4BAFD7;
+// @rt-font-base-color: #fff;
+// @rt-active-border: 1px solid rgba(0, 0, 0, 0.2);
+// @rt-active-background-color: rgb(51, 51, 51);
+// @rt-active-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.12), 0px 0px 4px rgba(255, 255, 255, 0.2);
 // Button styles
 // -----------------------------
 .@{btn-prefix-cls} {
-  line-height: @line-height-base;
+  // Fixing https://github.com/ant-design/ant-design/issues/12978
+  // It is a render problem of chrome, which is only happened in the codesandbox demo
+  // 0.001px solution works and I don't why
+  line-height: @line-height-base - 0.001;
   .btn;
   .btn-default;
 
@@ -27,6 +41,27 @@
 
   &-primary {
     .btn-primary;
+   
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+      border: @rt-border;
+      border-radius: @rt-border-radius;
+      background: @rt-background-color;
+      box-shadow: @rt-box-shadow;
+    &:hover{
+      color: @rt-font-theme-color;
+      border: @rt-hover-border;
+      border-radius: @rt-border-radius;
+      background: @rt-hover-background-color;
+      box-shadow: @rt-hover-box-shadow;
+    }
+    &:active, &:focus {
+      color: @rt-font-theme-color;
+      border: @rt-active-border;
+      border-radius: @rt-border-radius;
+      background-color: @rt-active-background-color;
+      box-shadow: @rt-active-box-shadow;
+    } 
+  // ----------------------------------------------- rtcenter end --------------------------------------------
 
     .@{btn-prefix-cls}-group &:not(:first-child):not(:last-child) {
       border-right-color: @btn-group-border;
@@ -164,7 +199,7 @@
   }
 
   &-background-ghost&-danger {
-    .button-variant-ghost(@btn-danger-border);
+    .button-variant-ghost(@btn-danger-color);
   }
 
   &-background-ghost&-link {
@@ -193,12 +228,7 @@
 }
 
 a.@{btn-prefix-cls} {
-  // Fixing https://github.com/ant-design/ant-design/issues/12978
-  // It is a render problem of chrome, which is only happened in the codesandbox demo
-  // 0.1px for padding-top solution works and I don't why
-  padding-top: 0.1px;
   line-height: @btn-height-base - 2px;
-
   &-lg {
     line-height: @btn-height-lg - 2px;
   }

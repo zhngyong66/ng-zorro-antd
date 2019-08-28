@@ -28,23 +28,28 @@
     overflow-y: hidden !important;
   }
 
-  // https://github.com/ant-design/ant-design/issues/17611
   table {
     width: 100%;
     text-align: left;
     border-radius: @table-border-radius-base @table-border-radius-base 0 0;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
   }
 
   &-thead > tr > th {
     color: @table-header-color;
     font-weight: 500;
     text-align: left;
-    background: @table-header-bg;
-    border-bottom: @border-width-base @border-style-base @border-color-split;
+    // background: @table-header-bg;
+    // border-bottom: @border-width-base @border-style-base @border-color-split;
     transition: background 0.3s ease;
 
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background: @rt-table-tr-th-bg-color;
+    border-bottom: @rt-table-tr-th-border-bottom;
+    color: @rt-font-base-color;
+    box-shadow: @rt-table-tr-th-box-shadow;
+    text-align: center;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
     &[colspan] {
       text-align: center;
     }
@@ -222,6 +227,16 @@
   &-tbody > tr > td {
     border-bottom: @border-width-base @border-style-base @border-color-split;
     transition: all 0.3s, border 0s;
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background: @rt-table-tr-td-bg-color;
+    border-bottom: @rt-table-tr-td-border;
+    border-right: @rt-table-tr-td-border;
+    border-left: @rt-table-tr-td-border;
+    color: @rt-font-base-color;
+    text-align: center;
+    // box-shadow: inset 0 0 2px 1px #515151;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
   }
 
   &-thead > tr,
@@ -246,6 +261,15 @@
         }
       }
     }
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    &.@{table-prefix-cls}-row-hover,
+    &:hover {
+      &:not(.@{table-prefix-cls}-expanded-row) > td {
+        background: @rt-font-theme-color;
+      }
+    }
+// ----------------------------------------------- rtcenter start --------------------------------------------
   }
 
   &-thead > tr:hover {
@@ -255,8 +279,7 @@
   &-footer {
     position: relative;
     padding: @table-padding-vertical @table-padding-horizontal;
-    color: @table-footer-color;
-    background: @table-footer-bg;
+    background: @table-header-bg;
     border-top: @border-width-base @border-style-base @border-color-split;
     border-radius: 0 0 @table-border-radius-base @table-border-radius-base;
     &::before {
@@ -265,7 +288,7 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: @table-footer-bg;
+      background: @table-header-bg;
       content: '';
     }
   }
@@ -327,7 +350,10 @@
 
   &-thead > tr > th,
   &-tbody > tr > td {
-    padding: @table-padding-vertical @table-padding-horizontal;
+    // padding: @table-padding-vertical @table-padding-horizontal;
+    // ----------------------------------------------- rtcenter start --------------------------------------------
+      padding: 4px;
+    // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-expand-icon-th,
@@ -339,7 +365,10 @@
 
   &-header {
     overflow: hidden;
-    background: @table-header-bg;
+    // background: @table-header-bg;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background: @rt-table-tr-th-bg-color;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-header table {
@@ -368,20 +397,21 @@
     }
   }
 
+  // ----------------------------------------------- rtcenter start --------------------------------------------
   &-bordered {
     .@{table-prefix-cls}-header > table,
     .@{table-prefix-cls}-body > table,
     .@{table-prefix-cls}-fixed-left table,
     .@{table-prefix-cls}-fixed-right table {
-      border: @border-width-base @border-style-base @border-color-split;
+      border: 1px solid #343434;
       border-right: 0;
       border-bottom: 0;
     }
 
     &.@{table-prefix-cls}-empty {
       .@{table-prefix-cls}-placeholder {
-        border-right: @border-width-base @border-style-base @border-color-split;
-        border-left: @border-width-base @border-style-base @border-color-split;
+        border-right: @rt-table-tr-th-border-bottom;
+        border-left: @rt-table-tr-th-border-bottom;
       }
     }
 
@@ -402,13 +432,21 @@
     }
 
     .@{table-prefix-cls}-thead > tr:not(:last-child) > th {
-      border-bottom: @border-width-base @border-style-base @border-color-split;
+      border-bottom: @rt-table-tr-th-border-bottom;
     }
 
     .@{table-prefix-cls}-thead > tr > th,
     .@{table-prefix-cls}-tbody > tr > td {
-      border-right: @border-width-base @border-style-base @border-color-split;
+      border-right: 1px solid rgba(71, 71, 71, 1);
     }
+    box-shadow: @rt-table-tr-th-box-shadow;
+  // .@{table-prefix-cls}-header > table,
+  // .@{table-prefix-cls}-body > table,
+  // .@{table-prefix-cls}-fixed-left table,
+  // .@{table-prefix-cls}-fixed-right table {
+  //   border: @border-width-base @border-style-base @border-color-split;
+  // }
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-placeholder {
@@ -423,11 +461,26 @@
     border-top: @border-width-base @border-style-base @border-color-split;
     border-bottom: @border-width-base @border-style-base @border-color-split;
     border-radius: 0 0 @border-radius-base @border-radius-base;
+    .@{iconfont-css-prefix} {
+      margin-right: 4px;
+    }
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+  @placeholder-bg-color: @rt-input-number-handler-bg-color;
+    background-color: @placeholder-bg-color;
+    color: @rt-font-base-color;
+    border-color: @rt-table-placeholder-border-color;
+    .ant-empty-normal {
+      color: @rt-font-base-color;
+    }
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-pagination.@{ant-prefix}-pagination {
     float: right;
     margin: 16px 0;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-font-base-color;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-filter-dropdown {
@@ -469,10 +522,6 @@
 
     .@{ant-prefix}-dropdown-menu-item {
       overflow: hidden;
-    }
-
-    .@{ant-prefix}-checkbox-wrapper + span {
-      padding-left: 8px;
     }
 
     > .@{ant-prefix}-dropdown-menu > .@{ant-prefix}-dropdown-menu-item:last-child,
@@ -543,25 +592,18 @@
 
   &-row {
     &-expand-icon {
-      .operation-unit();
-
       display: inline-block;
       width: 17px;
       height: 17px;
-      color: inherit;
       line-height: 14px;
       text-align: center;
-      background: @component-background;
+      // background: @component-background;
+    // ----------------------------------------------- rtcenter start --------------------------------------------
+      background: @rt-table-tr-td-bg-color;
+    // ----------------------------------------------- rtcenter end --------------------------------------------
       border: @border-width-base @border-style-base @border-color-split;
-      outline: none;
-      transition: all 0.3s;
+      cursor: pointer;
       user-select: none;
-
-      &:focus,
-      &:hover,
-      &:active {
-        border-color: currentColor;
-      }
     }
 
     &-expanded::after {
@@ -652,10 +694,7 @@
       border: 1px solid @border-color-split;
       border-width: 1px 1px 1px 0;
     }
-    &.@{table-prefix-cls}-hide-scrollbar
-      .@{table-prefix-cls}-thead
-      > tr:only-child
-      > th:last-child {
+    &.@{table-prefix-cls}-hide-scrollbar .@{table-prefix-cls}-thead > tr > th:last-child {
       border-right-color: transparent;
     }
   }
@@ -757,9 +796,10 @@
 
 /**
 * Another fix of Firefox:
+* - https://github.com/ant-design/ant-design/issues/12628
+* - https://github.com/ant-design/ant-design/issues/12628
 */
 @supports (-moz-appearance: meterbar) {
-  // https://github.com/ant-design/ant-design/issues/12628
   .@{table-prefix-cls}-thead > tr > th.@{table-prefix-cls}-column-has-actions {
     background-clip: padding-box;
   }

@@ -34,10 +34,12 @@
     position: relative;
     display: inline-block;
     width: 100%;
-    overflow: hidden;
     vertical-align: middle;
-    background-color: @progress-remaining-color;
-    border-radius: @progress-radius;
+    // background-color: @progress-remaining-color;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background-color: #515151;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    border-radius: 100px;
   }
 
   &-circle-trail {
@@ -53,8 +55,14 @@
   &-bg {
     position: relative;
     background-color: @progress-default-color;
-    border-radius: @progress-radius;
     transition: all 0.4s @ease-out-circ 0s;
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background-image: linear-gradient(-45deg,#47A2C6 0, #47A2C6 25%, #4091b2 0, #4091b2 50%, #47A2C6 0, #47A2C6 75%,#4091b2 0,#4091b2 100%) !important;
+    background-size: 26px 26px;
+    border-radius:3px;
+    height: 20px !important;
+  // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-success-bg {
@@ -78,6 +86,13 @@
     .@{iconfont-css-prefix} {
       font-size: @font-size-base;
     }
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    position: absolute;
+    right: 40px;
+    top: 6px;
+    color: #fff;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
   }
 
   &-status-active {
