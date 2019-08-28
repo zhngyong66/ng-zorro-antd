@@ -6,7 +6,8 @@
  * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
  */
 
-import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
+// import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
+import { FocusTrap } from '@angular/cdk/a11y';
 
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { BlockScrollStrategy, Overlay, OverlayKeyboardDispatcher, OverlayRef } from '@angular/cdk/overlay';
@@ -192,7 +193,7 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R>
     private elementRef: ElementRef,
     private viewContainer: ViewContainerRef,
     private modalControl: NzModalControlService,
-    private focusTrapFactory: FocusTrapFactory,
+    // private focusTrapFactory: FocusTrapFactory,
     private cdr: ChangeDetectorRef,
     @Optional() @Inject(NZ_MODAL_CONFIG) private nzModalGlobalConfig: NzModalConfig,
     @Inject(DOCUMENT) private document: any // tslint:disable-line:no-any
