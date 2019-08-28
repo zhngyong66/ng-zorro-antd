@@ -39,6 +39,18 @@
   display: inline-block;
   outline: 0;
 
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  // background: linear-gradient(0deg,#656565,#414141);
+  // border:1px solid rgba(0, 0, 0, 0.3);
+  // // box-shadow:0px 3px 8px 0px rgba(0, 0, 0, 0.2), 0px 1px 0px 0px rgba(255,255,255,0.4);
+  // border-radius:5px;
+  
+  // border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  background: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);
+  color: #fff;
+// ----------------------------------------------- rtcenter end --------------------------------------------
   ul,
   ol {
     margin: 0;
@@ -67,6 +79,22 @@
     & &-icon svg {
       transition: transform 0.3s;
     }
+    
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(0, 0, 0, 0.3);
+    // box-shadow:0px 2px 0px 0px rgba(255,255,255,0.6), 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+    border-radius:3px 3px 3px 3px;
+    top: 35%;
+    padding: 2px;
+    & &-icon svg {
+      fill: #fff;
+    }
+    &-icon {
+      padding: 2px 1px 0 1px;
+    }
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+
   }
 
   &-selection {
@@ -103,10 +131,26 @@
     &-selected-value {
       float: left;
       max-width: 100%;
+      padding-right: 20px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    // background: linear-gradient(0deg,#656565,#414141);
+    // border:1px solid rgba(0, 0, 0, 0.3);
+    // // box-shadow:0px 3px 8px 0px rgba(0, 0, 0, 0.2), 0px 1px 0px 0px rgba(255,255,255,0.4);
+    // border-radius:5px;
+    color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    background: -webkit-linear-gradient(90deg, rgb(66,66,66) 0%, rgb(100,100,100) 100%);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.4), inset 0px -1px 0px rgba(255, 255, 255, 0.05);
+    &:hover {
+      border-color: #4BAFD7;
+    }
+// ----------------------------------------------- rtcenter end --------------------------------------------
   }
 
   &-no-arrow &-selection-selected-value {
@@ -118,7 +162,10 @@
   }
 
   &-disabled &-selection {
-    background: @input-disabled-bg;
+    // background: @input-disabled-bg;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    background: #888888;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
     cursor: not-allowed;
     &:hover,
     &:focus,
@@ -147,16 +194,6 @@
     position: relative;
     height: @input-height-base;
     cursor: pointer;
-
-    .@{select-prefix-cls}-selection__rendered {
-      margin-right: 24px;
-    }
-  }
-
-  &-no-arrow {
-    .@{select-prefix-cls}-selection__rendered {
-      margin-right: @control-padding-horizontal - 1px;
-    }
   }
 
   &-selection__rendered {
@@ -203,7 +240,7 @@
       height: @input-height-sm;
     }
     .@{select-prefix-cls}-selection__rendered {
-      margin-left: @control-padding-horizontal-sm - 1px;
+      margin: 0 @control-padding-horizontal-sm - 1px;
       line-height: @input-height-sm - 2px;
     }
     .@{select-prefix-cls}-selection--multiple {
@@ -379,6 +416,9 @@
     .@{select-prefix-cls}-selection__clear,
     .@{select-prefix-cls}-arrow {
       top: @input-height-base / 2;
+// ----------------------------------------------- rtcenter start --------------------------------------------
+      top: 35%;
+// ----------------------------------------------- rtcenter end --------------------------------------------
     }
   }
 
@@ -477,6 +517,11 @@
     overflow: auto;
     list-style: none;
     outline: none;
+    
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    background: linear-gradient(0deg, #848484, #585858);
+    color: #fff;
+// ----------------------------------------------- rtcenter end --------------------------------------------
 
     &-item-group-list {
       margin: 0;
@@ -552,6 +597,23 @@
         line-height: 0;
         background-color: @border-color-split;
       }
+
+
+    // ----------------------------------------------- rtcenter start --------------------------------------------
+      color: #fff;
+      &:hover:not(&-disabled) {
+        background-color: #4BAFD7;
+      }
+      &-selected {
+        color: #fff;
+        font-weight: @select-item-selected-font-weight;
+        background-color: #4BAFD7;
+      }
+      &-active:not(&-disabled) {
+        background-color: #4BAFD7;
+      }
+    // ----------------------------------------------- rtcenter end --------------------------------------------
+
     }
   }
 

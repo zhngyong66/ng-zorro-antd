@@ -32,7 +32,7 @@
     &:hover &-up-inner,
     &:hover &-down-inner {
       color: @primary-5;
-    }
+  }
   }
 
   &-handler-up-inner,
@@ -47,6 +47,12 @@
     line-height: 12px;
     transition: all 0.1s linear;
     user-select: none;
+  // ----------------------------------------------- rtcenter start --------------------------------------------
+    svg {
+      fill: @rt-svg-fill-color;
+    }
+  // ----------------------------------------------- rtcenter end --------------------------------------------
+  
   }
 
   &:hover {
@@ -174,4 +180,21 @@
   &-handler-down-disabled:hover &-handler-down-inner {
     color: @disabled-color;
   }
+
+
+  // @rt-input-number-border: 1px solid rgba(0, 0, 0, 0.35);
+  // @rt-input-number-handler-bg-color: #343434;
+  // @rt-input-number-handler-warp-border-left: 1px solid rgb(71, 71, 71);
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  border: @rt-input-number-border;
+  &-handler {
+    background-color: @rt-input-number-handler-bg-color;
+  }
+  &-handler-wrap {
+    border-left: @rt-input-number-handler-warp-border-left;
+  }
+  &-handler-down {
+    border-top: @rt-input-number-handler-warp-border-left;
+  }
+// ----------------------------------------------- rtcenter end --------------------------------------------
 }

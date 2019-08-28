@@ -7,6 +7,13 @@
 @radio-duration: 0.3s;
 @radio-focused-outline: 3px solid fade(@radio-dot-color, 6%);
 
+
+// @rt-radio-border: 1px solid rgba(51,51,51,1);
+// @rt-radio-box-shadow: 0px 1px 0px 0px rgba(255,255,255,0.25), 0px 0px 4px 0px rgba(255,255,255,0.15);
+// @rt-radio-inner-background-color: rgba(51,51,51,1);
+// @rt-radio-inner-affter-bg-color: @rt-font-theme-color;
+// @rt-radio-checked-border-color: rgba(0, 0, 0, 0.35);
+
 .@{radio-group-prefix-cls} {
   .reset-component;
 
@@ -23,6 +30,10 @@
   margin-right: 8px;
   white-space: nowrap;
   cursor: pointer;
+  
+// ----------------------------------------------- rtcenter start --------------------------------------------
+  color: @rt-font-base-color;
+// ----------------------------------------------- rtcenter end --------------------------------------------
 }
 
 .@{radio-prefix-cls} {
@@ -109,6 +120,30 @@
     cursor: pointer;
     opacity: 0;
   }
+
+// ----------------------------------------------- rtcenter start --------------------------------------------
+
+  border: @rt-radio-border;
+  box-shadow: @rt-radio-box-shadow;
+  border-radius: 50%;
+  
+  &-inner {
+    border: @rt-radio-border;
+    background-color: @rt-radio-inner-background-color;
+    &::after {
+      background-color: @rt-radio-inner-affter-bg-color;
+    }
+  }
+  &-input:focus + .@{radio-inner-prefix-cls} {
+    box-shadow: @rt-radio-box-shadow;
+  }
+  .@{radio-prefix-cls}-wrapper:hover &,
+  &:hover .@{radio-inner-prefix-cls},
+  &-input:focus + .@{radio-inner-prefix-cls} {
+    border-color: @rt-radio-inner-background-color;
+  }
+
+// ----------------------------------------------- rtcenter end --------------------------------------------
 }
 
 // 选中状态
@@ -123,13 +158,33 @@
   }
 }
 
+// ----------------------------------------------- rtcenter start --------------------------------------------
+.@{radio-prefix-cls}-checked {
+  .@{radio-inner-prefix-cls} {
+    border-color: @rt-radio-checked-border-color;
+    &::after {
+      transform: scale(1);
+      opacity: 1;
+      transition: all @radio-duration @ease-in-out-circ;
+    }
+  }
+}
+// ----------------------------------------------- rtcenter end --------------------------------------------
+
 .@{radio-prefix-cls}-disabled {
   .@{radio-inner-prefix-cls} {
-    background-color: @input-disabled-bg;
-    border-color: @border-color-base !important;
+    // background-color: @input-disabled-bg;
+    // border-color: @border-color-base !important;
+// ----------------------------------------------- rtcenter start --------------------------------------------
+    background-color: @rt-input-disable-background;
+    border-color: @rt-input-disable-background;
+// ----------------------------------------------- rtcenter end --------------------------------------------
     cursor: not-allowed;
     &::after {
-      background-color: fade(@black, 20%);
+      // background-color: fade(@black, 20%);
+    // ----------------------------------------------- rtcenter start --------------------------------------------
+      background-color: @rt-radio-inner-disabled-bg-color;
+    // ----------------------------------------------- rtcenter end --------------------------------------------
     }
   }
 
@@ -138,8 +193,11 @@
   }
 
   & + span {
-    color: @disabled-color;
+    // color: @disabled-color;
     cursor: not-allowed;
+    // ----------------------------------------------- rtcenter start --------------------------------------------
+    color: @rt-radio-disabled-span-color;
+    // ----------------------------------------------- rtcenter end --------------------------------------------
   }
 }
 
@@ -231,18 +289,16 @@ span.@{radio-prefix-cls} + * {
     pointer-events: none;
   }
 
-  &-checked:not(&-disabled) {
+  &-checked {
     z-index: 1;
     color: @radio-dot-color;
     background: @radio-button-checked-bg;
     border-color: @radio-dot-color;
     box-shadow: -1px 0 0 0 @radio-dot-color;
-
     &::before {
       background-color: @radio-dot-color !important;
       opacity: 0.1;
     }
-
     &:first-child {
       border-color: @radio-dot-color;
       box-shadow: none !important;
