@@ -6,8 +6,7 @@
  * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
  */
 
-// import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
-import { FocusTrap } from '@angular/cdk/a11y';
+import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
 
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { BlockScrollStrategy, Overlay, OverlayKeyboardDispatcher, OverlayRef } from '@angular/cdk/overlay';
@@ -92,6 +91,9 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R>
   @Input() nzOkType: string = 'primary';
   @Input() nzIconType: string = 'question-circle'; // Confirm Modal ONLY
   @Input() nzModalType: ModalType = 'default';
+
+  // rtcenter 增加是否默认获取焦点, 默认不获取, 需要时候增加needFocus属性
+  @Input() @InputBoolean() needFocus: boolean = false;
 
   @Input() @Output() readonly nzOnOk: EventEmitter<T> | OnClickCallback<T> = new EventEmitter<T>();
   @Input() @Output() readonly nzOnCancel: EventEmitter<T> | OnClickCallback<T> = new EventEmitter<T>();
@@ -193,7 +195,7 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R>
     private elementRef: ElementRef,
     private viewContainer: ViewContainerRef,
     private modalControl: NzModalControlService,
-    // private focusTrapFactory: FocusTrapFactory,
+    private focusTrapFactory: FocusTrapFactory,
     private cdr: ChangeDetectorRef,
     @Optional() @Inject(NZ_MODAL_CONFIG) private nzModalGlobalConfig: NzModalConfig,
     @Inject(DOCUMENT) private document: any // tslint:disable-line:no-any
@@ -547,13 +549,20 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R>
   }
 
   private trapFocus(): void {
-    if (!this.focusTrap) {
-      // this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
-      // rtcenter 处理
-      // 没有获取元素焦点时, 不做处理, 防止弹框产生时就获得焦点
-      // console.log('没有获取元素焦点');
+    if (this.needFocus) { // 需要默认获取焦点的时候再加上默认获取焦点
+      if (!this.focusTrap) {
+        this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
+      }
+      this.focusTrap.focusInitialElementWhenReady();
     }
-    // this.focusTrap.focusInitialElementWhenReady();
+    /**
+     *  源码的写法
+      if (!this.focusTrap) {
+        this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
+      }
+      this.focusTrap.focusInitialElementWhenReady();
+
+    */
   }
 
   private restoreFocus(): void {
